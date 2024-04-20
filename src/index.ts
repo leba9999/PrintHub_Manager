@@ -2,6 +2,7 @@ import express, { Express, Request, Response, Application } from "express";
 import dotenv from "dotenv";
 import { MysqlDataSource, MongoDataSource } from "./utils/Datasources";
 import { Color } from "./entities/color.entity";
+import logger from "./utils/loggers";
 
 //For env File
 dotenv.config();
@@ -9,16 +10,16 @@ dotenv.config();
 const app: Application = express();
 const port = process.env.PORT || 8000;
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Welcome to Express & TypeScript Server");
-});
-
 MongoDataSource.initialize()
   .then(() => {
-    app.listen(port, () => {
-      console.log(`Server is Fire at http://localhost:${port}`);
-    });
-    console.log("Data Source has been initialized!");
+    app
+      .listen(port, () => {
+        logger.info(`Server is Fire at http://localhost:${port}`);
+      })
+      .on("error", (err) => {
+        logger.error("Error during server startup", err);
+      });
+    logger.info("Data Source has been initialized!");
     const testColor = new Color();
     testColor.name = "Red";
     testColor.color = "#FF0000";
