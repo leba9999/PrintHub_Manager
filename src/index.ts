@@ -1,13 +1,12 @@
-import express, { Express, Request, Response, Application } from "express";
 import dotenv from "dotenv";
 import { MysqlDataSource, MongoDataSource } from "./utils/Datasources";
 import { Color } from "./entities/color.entity";
 import logger from "./utils/loggers";
+import app from "./app";
 
 //For env File
 dotenv.config();
 
-const app: Application = express();
 const port = process.env.PORT || 8000;
 
 MongoDataSource.initialize()
