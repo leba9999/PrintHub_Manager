@@ -2,6 +2,7 @@ import {
   Column,
   Entity,
   ManyToOne,
+  ObjectIdColumn,
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
@@ -10,7 +11,7 @@ import { FilamentToPrintLog } from "./filament_printlog.entity";
 
 @Entity()
 export class Filament {
-  @PrimaryGeneratedColumn()
+  @ObjectIdColumn()
   id: number;
 
   @Column()

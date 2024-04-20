@@ -1,10 +1,16 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  ObjectIdColumn,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import { Filament } from "./filament.entity";
 import { PrintLog } from "./printlog.entity";
 
 @Entity()
 export class FilamentToPrintLog {
-  @PrimaryGeneratedColumn()
+  @ObjectIdColumn()
   id: number;
 
   @Column()

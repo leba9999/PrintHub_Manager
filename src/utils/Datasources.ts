@@ -2,22 +2,22 @@ import { DataSource } from "typeorm";
 
 const MysqlDataSource = new DataSource({
   type: "mariadb",
-  host: "localhost",
-  port: 3306,
-  username: "olso",
-  password: "olso",
-  database: "printManager",
+  host: process.env.MONGO_HOST || "127.0.0.1",
+  port: (process.env.MONGO_PORT as unknown as number) || 3306,
+  username: process.env.MONGO_USER || "",
+  password: process.env.MONGO_PASS || "",
+  database: process.env.MONGO_DB || "printManager",
   entities: [__dirname + "/../entities/*{.js,.ts}"],
 });
 
 const MongoDataSource = new DataSource({
   type: "mongodb",
-  host: "localhost",
-  port: 5432,
-  username: "test",
-  password: "test",
-  database: "test",
-  entities: ["../entities/*{.js,.ts}"],
+  host: process.env.MONGO_HOST || "127.0.0.1",
+  port: (process.env.MONGO_PORT as unknown as number) || 27017,
+  username: process.env.MONGO_USER || "",
+  password: process.env.MONGO_PASS || "",
+  database: process.env.MONGO_DB || "printManager",
+  entities: [__dirname + "/../entities/*{.js,.ts}"],
 });
 
 export { MysqlDataSource, MongoDataSource };

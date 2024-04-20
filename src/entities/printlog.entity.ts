@@ -1,9 +1,15 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  ObjectIdColumn,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import { FilamentToPrintLog } from "./filament_printlog.entity";
 
 @Entity()
 export class PrintLog {
-  @PrimaryGeneratedColumn()
+  @ObjectIdColumn()
   id: number;
 
   @Column()
