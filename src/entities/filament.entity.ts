@@ -1,20 +1,24 @@
 import {
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
   ObjectIdColumn,
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
+import { ObjectId } from "mongodb";
 import { Color } from "./color.entity";
 import { FilamentToPrintLog } from "./filament_printlog.entity";
 
 @Entity()
 export class Filament {
   @ObjectIdColumn()
-  id: number;
+  id: ObjectId;
 
-  @Column()
+  @Column({
+    nullable: false,
+  })
   name: string;
 
   @Column()
@@ -22,6 +26,10 @@ export class Filament {
 
   @Column()
   diameter: number;
+
+  @ManyToOne(() => Color)
+  @JoinColumn()
+  color: Color;
 
   @Column()
   brand: string;
@@ -34,9 +42,6 @@ export class Filament {
 
   @Column()
   totalAmount: number;
-
-  @ManyToOne(() => Color, (color) => color.filaments)
-  color: Color;
 
   @OneToMany(
     () => FilamentToPrintLog,

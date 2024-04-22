@@ -1,18 +1,19 @@
-import express, { Application } from "express";
+import express, { Application, NextFunction, Request, Response } from "express";
 import cors from "cors";
 import { errorHandler, notFound } from "./utils/Middlewares";
 import api from "./api";
-import CustomError from "./classes/CustomError";
+import swaggerDocs from "./utils/swagger";
 
 const app: Application = express();
 
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  // Create a simple response if the user hits the root URL in development but not in production. Throw an error in production.
+app.get("/", (req: Request, res: Response, next: NextFunction) => {
+  // Create a simple response if the user hits the root URL in development but not in production.
   if (process.env.NODE_ENV !== "development") {
-    throw new CustomError("Endpoint not found", 404);
+    next(); // Pass the request to the next handler if the environment is not development
+    return;
   }
   res.json({
     message: "Hello World!",
@@ -20,6 +21,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/v1", api);
+
+swaggerDocs(app);
 
 app.use(notFound);
 app.use(errorHandler);

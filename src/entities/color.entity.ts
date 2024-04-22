@@ -5,19 +5,16 @@ import {
   OneToMany,
   ObjectIdColumn,
 } from "typeorm";
-import { Filament } from "./filament.entity";
+import { ObjectId } from "mongodb";
 
 @Entity()
 export class Color {
   @ObjectIdColumn()
-  id: number;
+  id: ObjectId;
 
   @Column()
   name: string;
 
   @Column()
-  color: string;
-
-  @OneToMany(() => Filament, (filament) => filament.color)
-  filaments: Filament[];
+  hex: string;
 }
