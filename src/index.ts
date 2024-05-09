@@ -3,7 +3,6 @@ import { MysqlDataSource, MongoDataSource } from "./utils/Datasources";
 import { Color } from "./entities/color.entity";
 import logger from "./utils/loggers";
 import app from "./app";
-import swaggerDocs from "./utils/swagger";
 import { Filament } from "./entities/filament.entity";
 
 //For env File

@@ -2,7 +2,6 @@ import express, { Application, NextFunction, Request, Response } from "express";
 import cors from "cors";
 import { errorHandler, notFound } from "./utils/Middlewares";
 import api from "./api";
-import swaggerDocs from "./utils/swagger";
 
 const app: Application = express();
 
@@ -21,8 +20,6 @@ app.get("/", (req: Request, res: Response, next: NextFunction) => {
 });
 
 app.use("/api/v1", api);
-
-swaggerDocs(app);
 
 app.use(notFound);
 app.use(errorHandler);
