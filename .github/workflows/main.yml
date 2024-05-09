@@ -13,13 +13,13 @@ jobs:
         image: mongo:7.0
         ports:
           - 27017:27017
-        options: >
+        options: |
           --name test-mongodb
-          -d               # Run in detached mode
-          --replSet rs0    # Set up a replica set for tests if needed
+          -d
+          --replSet rs0
         env:
-          MONGO_INITDB_ROOT_USERNAME: root # Default admin username
-          MONGO_INITDB_ROOT_PASSWORD: root # Default admin password
+          MONGO_INITDB_ROOT_USERNAME: root
+          MONGO_INITDB_ROOT_PASSWORD: root
 
     steps:
       - name: Checkout Repository
