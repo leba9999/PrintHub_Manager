@@ -1,6 +1,6 @@
-interface Color {
-  id?: string;
-  name?: string;
-  color: string;
+interface iColor {
+  id: string;
+  name: string;
+  hex: string;
 }
-export { Color };
+export { iColor };

@@ -8,6 +8,18 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    services:
+      mongodb:
+        image: mongo:7.0
+        ports:
+          - 27017:27017
+        options: >
+          --name test-mongodb
+          -d               # Run in detached mode
+          --replSet rs0    # Set up a replica set for tests if needed
+        env:
+          MONGO_INITDB_ROOT_USERNAME: root # Default admin username
+          MONGO_INITDB_ROOT_PASSWORD: root # Default admin password
 
     steps:
       - name: Checkout Repository
@@ -20,6 +32,14 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
+
+      - name: Set Environment Variables
+        run: |
+          echo "MONGO_HOST=127.0.0.1" >> $GITHUB_ENV
+          echo "MONGO_PORT=27017" >> $GITHUB_ENV
+          echo "MONGO_DB=testdb" >> $GITHUB_ENV
+          echo "MONGO_USER=root" >> $GITHUB_ENV
+          echo "MONGO_PASS=root" >> $GITHUB_ENV
 
       - name: Run Jest Tests
         run: npm test

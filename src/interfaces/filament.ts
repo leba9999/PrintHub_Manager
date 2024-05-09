@@ -1,14 +1,20 @@
-import { Color } from "./color";
+import { ObjectId } from "typeorm";
+import { iColor } from "./color";
 
-interface Filament {
-  id?: string;
-  name?: string;
-  material?: string;
-  diameter?: number;
-  brand?: string;
-  url?: string;
-  amount?: number;
-  totalAmount?: number;
-  color?: Color;
+interface iFilament {
+  id: string;
+  name: string;
+  material: string;
+  diameter: number;
+  brand: string;
+  url: string;
+  amount: number;
+  totalAmount: number;
+  color_id?: ObjectId;
 }
-export { Filament };
+
+interface iFilamentWithColor extends iFilament {
+  color?: iColor;
+}
+
+export { iFilament, iFilamentWithColor };

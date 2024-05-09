@@ -14,7 +14,7 @@ import { FilamentToPrintLog } from "./filament_printlog.entity";
 @Entity()
 export class Filament {
   @ObjectIdColumn()
-  id: ObjectId;
+  _id: ObjectId;
 
   @Column({
     nullable: false,
@@ -27,9 +27,8 @@ export class Filament {
   @Column()
   diameter: number;
 
-  @ManyToOne(() => Color)
-  @JoinColumn()
-  color: Color;
+  @Column()
+  color_id: ObjectId;
 
   @Column()
   brand: string;
