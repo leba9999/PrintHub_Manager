@@ -14,6 +14,11 @@ import { ErrorMessageResponse } from "../src/interfaces/responses";
 describe("Testing user interactions with API filament storage", () => {
   beforeAll(async () => {
     logger.silent = false; // turn off logging
+    console.log(process.env.MONGO_HOST);
+    console.log(process.env.MONGO_PORT);
+    console.log(process.env.MONGO_DB);
+    console.log(process.env.MONGO_USER);
+    console.log(process.env.MONGO_PASS);
     await MongoDataSource.initialize();
   }, 10000);
   afterAll(async () => {
