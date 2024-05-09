@@ -8,21 +8,20 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    services:
-      mongodb:
-        image: mongo:7.0
-        ports:
-          - 27017:27017
-        options: >
-          --name test-mongodb
-          --replSet rs0
-        env:
-          MONGO_INITDB_ROOT_USERNAME: root
-          MONGO_INITDB_ROOT_PASSWORD: root
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
+
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.10.0
+        with:
+          mongodb-version: "7.0"
+          mongodb-replica-set: test-rs
+          mongodb-username: root
+          mongodb-password: root
+          mongodb-db: testdb
+          mongodb-port: 27017
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
