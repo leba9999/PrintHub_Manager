@@ -13,9 +13,8 @@ jobs:
         image: mongo:7.0
         ports:
           - 27017:27017
-        options: |
+        options: >
           --name test-mongodb
-          -d
           --replSet rs0
         env:
           MONGO_INITDB_ROOT_USERNAME: root
