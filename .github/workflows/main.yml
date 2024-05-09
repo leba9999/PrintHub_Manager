@@ -38,8 +38,5 @@ jobs:
           echo "MONGO_USER=root" >> $GITHUB_ENV
           echo "MONGO_PASS=root" >> $GITHUB_ENV
 
-      - name: Wait for MongoDB
-        run: sleep 5 # Wait for MongoDB service to initialize
-
       - name: Run Jest Tests
         run: npm test

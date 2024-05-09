@@ -19,7 +19,8 @@ describe("Testing user interactions with API filament storage", () => {
     console.log(process.env.MONGO_DB);
     console.log(process.env.MONGO_USER);
     console.log(process.env.MONGO_PASS);
-    await MongoDataSource.initialize();
+    const test = await MongoDataSource.initialize();
+    console.log(test);
   }, 10000);
   afterAll(async () => {
     logger.silent = false; // turn on logging

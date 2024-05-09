@@ -18,6 +18,9 @@ const MongoDataSource = new DataSource({
   password: process.env.MONGO_PASS || "",
   database: process.env.MONGO_DB || "printManager",
   entities: [__dirname + "/../entities/*{.js,.ts}"],
+  extra: {
+    authSource: "admin",
+  },
 });
 
 export { MysqlDataSource, MongoDataSource };
